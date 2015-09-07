@@ -33,19 +33,19 @@ batch_size: Minibatch size used for SGD.
 
 def get_state():
 	state = {}
-	state['n_inputs'] = 13
-	state['n_outputs'] = 1
-	state['n_hidden'] = [50,50,50]
+	state['n_inputs'] = 513#             note this input
+	state['n_outputs'] = 3# note this output
+	state['n_hidden'] = [3,10,3]# note this hidden
 	state['activation'] = 'sigmoid'#'ReLU'
 	state['output_layer'] = 'sigmoid'#softmax
 	state['dropout_rates'] = [0,0.5,0.5]
 	state['momentum'] = False
 	state['learning_rate'] = 0.1
-	state['num_epochs'] = 200
+	state['num_epochs'] = 2# this is epoch
 	state['save'] = True
 	state['output_folder'] = None
 	state['lr_update'] = False
 	state['dataset_dir'] = 'dataset' #/path/to/dataset/dir
-	state['batch_size'] = 20
+	state['batch_size'] = 3#note this batch
 	state['mom_rate'] = 0.9
 	return state

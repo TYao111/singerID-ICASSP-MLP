@@ -1,0 +1,2 @@
+/home/zhangxulong/PycharmProjects/singerID-ICASSP-MLP/dataset/audio/4/h.wav	4
+/home/zhangxulong/PycharmProjects/singerID-ICASSP-MLP/dataset/audio/4/f.wav	4

@@ -24,7 +24,7 @@ class Dataset:
         self.current_batch = 0
         self.number_batches = number_batches
         self.items = []
-        if targets == None:
+        if targets is None:
             if batch_size is None:
                 # self.items.append([data[i][i_sequence] for i in xrange(len(data))])
                 self.items = [[data[i]] for i in xrange(len(data))]

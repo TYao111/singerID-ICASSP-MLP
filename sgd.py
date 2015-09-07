@@ -33,6 +33,9 @@ class SGD_Optimizer():
                 self.params_mom.append(param_init)
         self.costs = costs 
         self.num_costs = len(costs)
+        print"+++++++costs+++++++++++++"
+        print costs[1]
+        print"++++++++++++++++++++"
         assert (isinstance(costs,list)), "The costs given to the SGD class must be a list, even for one element."
         self.updates_old = updates_old
         self.consider_constant = consider_constant
@@ -47,10 +50,10 @@ class SGD_Optimizer():
         
         self.gparams = T.grad(self.costs[0],self.params,consider_constant=self.consider_constant)
         if not self.momentum:
-            print 'Building SGD optimization graph without momentum'
+            print '=======================7.Building SGD optimization graph without momentum'
             updates = OrderedDict((i, i - self.lr_theano*j) for i, j in zip(self.params, self.gparams))
         else:
-            print 'Building SGD optimization graph with momentum'
+            print '========================7.Building SGD optimization graph with momentum'
             updates = OrderedDict()
             for param,param_mom,gparam in zip(self.params,self.params_mom,self.gparams):
                 param_inc = self.mom_theano * param_mom - self.lr_theano * gparam
@@ -64,7 +67,7 @@ class SGD_Optimizer():
             self.updates_old = OrderedDict()
             self.updates_old.update(updates)
 
-        self.f = theano.function(self.grad_inputs, self.costs, updates=self.updates_old)
+        self.f = theano.function(self.grad_inputs, self.costs, updates=self.updates_old,allow_input_downcast=True)
 
     def train(self,train_set,valid_set=None,learning_rate=0.1,num_epochs=500,save=False,output_folder=None,lr_update=None,mom_rate=0.9):
         self.best_cost = numpy.inf
@@ -86,7 +89,7 @@ class SGD_Optimizer():
                     #cost.append(self.f(*inputs))
                     cost.append(self.f(*inputs))
                 mean_costs = numpy.mean(cost,axis=0)
-                print '  Epoch %i   ' %(u+1)
+                print '===Epoch %i===' %(u+1)
                 print '***Train Results***'
                 for i in xrange(self.num_costs):
                     print "Cost %i: %f"%(i,mean_costs[i])

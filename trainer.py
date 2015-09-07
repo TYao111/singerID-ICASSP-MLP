@@ -26,21 +26,22 @@ class trainer():
 		self.lists['valid'] = os.path.join(self.list_dir,'valid_1_of_1.txt')
 		self.lists['test'] = os.path.join(self.list_dir,'test_1_of_1.txt')
 		self.preprocessor = PreProcessor(self.dataset_dir) 
-		print 'Preparing train/valid/test splits'
+		print '++++++++++++++1.Preparing train/valid/test splits'
 		self.preprocessor.prepare_fold(self.lists['train'],self.lists['valid'],self.lists['test'])
 		self.data = self.preprocessor.data
 		self.targets = self.preprocessor.targets
-		print 'Building model.'
-		self.model = MLP(n_inputs=self.state.get('n_inputs',13),n_outputs=self.state.get('n_ouputs',1),
-						 n_hidden=self.state.get('n_hidden',[50]),activation=self.state.get('activation','sigmoid'),
+		print '++++++++++++2.Building model.'
+		print "++++++++++++3.please not the param inputs* and outputs* and hidden*  "
+		self.model = MLP(n_inputs=self.state.get('n_inputs',513),n_outputs=self.state.get('n_ouputs',3),
+						 n_hidden=self.state.get('n_hidden',[3]),activation=self.state.get('activation','sigmoid'),
 						 output_layer=self.state.get('sigmoid','sigmoid'),dropout_rates=self.state.get('dropout_rates',None))
 
 	def train(self,):
-		print 'Starting training.'
-		print 'Initializing train dataset.'
+		print '++++++++++4.Starting training.'
+		print '+++++++++++++5.Initializing train dataset.'
 		self.batch_size = self.state.get('batch_size',20)
 		train_set = Dataset([self.data['train']],batch_size=self.batch_size,targets=[self.targets['train']])
-		print 'Initializing valid dataset.'
+		print '+++++++++++6.Initializing valid dataset.'
 		valid_set = Dataset([self.data['valid']],batch_size=self.batch_size,targets=[self.targets['valid']])
 		self.optimizer = SGD_Optimizer(self.model.params,[self.model.x,self.model.y],[self.model.cost,self.model.acc],momentum=self.state.get('momentum',False))
 		lr = self.state.get('learning_rate',0.1)

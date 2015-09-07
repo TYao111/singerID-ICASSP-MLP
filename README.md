@@ -8,7 +8,7 @@ Numpy, Scipy
 ```
 
 The code assumes a directory structure as follows:
-
+==================================================
 ```
 	dataset_dir
     	|

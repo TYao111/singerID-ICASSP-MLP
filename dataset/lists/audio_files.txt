@@ -1,0 +1,7 @@
+/home/zhangxulong/PycharmProjects/singerID-ICASSP-MLP/dataset/audio/3/d.wav
+/home/zhangxulong/PycharmProjects/singerID-ICASSP-MLP/dataset/audio/3/e.wav
+/home/zhangxulong/PycharmProjects/singerID-ICASSP-MLP/dataset/audio/1/a.wav
+/home/zhangxulong/PycharmProjects/singerID-ICASSP-MLP/dataset/audio/3/c.wav
+/home/zhangxulong/PycharmProjects/singerID-ICASSP-MLP/dataset/audio/1/b.wav
+/home/zhangxulong/PycharmProjects/singerID-ICASSP-MLP/dataset/audio/4/h.wav
+/home/zhangxulong/PycharmProjects/singerID-ICASSP-MLP/dataset/audio/4/f.wav

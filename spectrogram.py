@@ -41,8 +41,7 @@ class SpecGram():
         self.set_window()
         
         #Make sure x is in the right shape
-        print"x"
-        print x
+
         if x.ndim > 1:
             if x.shape[1]>1:
                 print x.shape
@@ -50,8 +49,7 @@ class SpecGram():
                 x=x.mean(axis=1)
                 print x.shape
         x=N.reshape(x,x.size)
-        print
-        print"XXXXXXXXXXXXXXXXXXXXXXXXXxx"
+
         #self.numWindows=(int(len(x)/self.winSize)-1)*self.nOverlaps+1 #This always gave odd number of windows
         self.numWindows = int((len(x) - (self.winSize-self.overLen))/self.overLen)#this is the souce code but it produce negative value
         #self.numWindows = int(((self.winSize-self.overLen)-len(x))/self.overLen)
@@ -61,20 +59,15 @@ class SpecGram():
         self.fftLen=self.winSize/2+1 #the first and middle value of the fft are not symetric
         self.nyquist=self.fs/2
         self.freqs=1.0*N.arange(self.fftLen)/(self.fftLen-1)*self.nyquist
-        print(self.numWindows)
-        print"1..........................++++numwindows"
-        print(self.fftLen)
+        print("1.debug=================numwindows====%s"%str(self.numWindows))
+
         self.specMat=N.zeros((self.numWindows,self.fftLen),dtype='complex')
         self.midSample=[]
         for i in range(self.numWindows):
             self.midSample.append(i*self.overLen+self.winSize/2)
-            print("222222222222222222222222________________________+++++++++++++++")
+
             #print(x[i*self.overLen:i*self.overLen+self.winSize] * self.window)
-            print i*self.overLen
-            print i*self.overLen+self.winSize
-            print x
-            print x[i*self.overLen:(i*self.overLen+self.winSize)]
-            print self.window
+
             specData=N.fft.fft(x[i*self.overLen:i*self.overLen+self.winSize] * self.window)
             self.specMat[i,:]=specData[:self.fftLen]
         if do_compress:
